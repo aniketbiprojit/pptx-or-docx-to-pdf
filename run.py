@@ -39,12 +39,22 @@ for file in files:
             print(file)
             print()
             PPTtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-4]+'pdf')
-        
+
+        if(file[-3:] == 'ppt'):
+            print(file)
+            print()
+            PPTtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-3]+'pdf')
+
         if(file[-4:] == 'docx'):
             print(file)
             print()
             DOCtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-4]+'pdf')
-    
+        
+        if(file[-3:] == 'doc'):
+            print(file)
+            print()
+            DOCtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-3]+'pdf')
+        
     except Exception as e:
         print(str(e))
 
