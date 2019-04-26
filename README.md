@@ -1,4 +1,4 @@
-# pptx-to-pdf
+# pptx-or-docx-to-pdf
 
 Works in same directory
 
