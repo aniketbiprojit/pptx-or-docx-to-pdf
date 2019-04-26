@@ -13,6 +13,18 @@ def PPTtoPDF(inputFileName, outputFileName, formatType=32):
     print('done')
     powerpoint.Quit()
 
+def DOCtoPDF(inputFileName, outputFileName, formatType=17):
+    word = comtypes.client.CreateObject("Word.Application")
+    word.Visible = 1    
+    if outputFileName[-3:] != 'pdf':
+        outputFileName = outputFileName + ".pdf"
+    deck = word.Documents.Open(inputFileName)
+    deck.SaveAs(outputFileName, formatType)
+    deck.Close()
+    print('done')
+    word.Quit()
+
+
 search_dir = "./"
 os.chdir(search_dir)
 files = filter(os.path.isfile, os.listdir(search_dir))
@@ -22,7 +34,20 @@ files.sort(key=lambda x: os.path.getmtime(x))
 files.reverse()
 print(files)
 for file in files:
-    if(file[-4:] == 'pptx'):
-        print(file)
-        print()
-        PPTtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-4]+'pdf')
+    try:
+        if(file[-4:] == 'pptx'):
+            print(file)
+            print()
+            PPTtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-4]+'pdf')
+        
+        if(file[-4:] == 'docx'):
+            print(file)
+            print()
+            DOCtoPDF(os.getcwd()+'\\'+file, os.getcwd()+'.\\'+file[:-4]+'pdf')
+    
+    except Exception as e:
+        print(str(e))
+
+        with open('logs.txt','a') as f:
+            f.write(str(e)+'\n')
+
