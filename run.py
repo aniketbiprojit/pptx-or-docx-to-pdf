@@ -8,7 +8,7 @@ def PPTtoPDF(inputFileName, outputFileName, formatType=32):
     if outputFileName[-3:] != 'pdf':
         outputFileName = outputFileName + ".pdf"
     deck = powerpoint.Presentations.Open(inputFileName)
-    deck.SaveAs(outputFileName, formatType)  # formatType = 32 for ppt to pdf
+    deck.SaveAs(outputFileName, formatType)
     deck.Close()
     print('done')
     powerpoint.Quit()
@@ -16,12 +16,9 @@ def PPTtoPDF(inputFileName, outputFileName, formatType=32):
 search_dir = "./"
 os.chdir(search_dir)
 files = filter(os.path.isfile, os.listdir(search_dir))
-files = [os.path.join(search_dir, f) for f in files] # add path to each file
+files = [os.path.join(search_dir, f) for f in files] 
 files.sort(key=lambda x: os.path.getmtime(x))
 
-# for (dirpath, dirnames, filenames) in walk('./'):
-#     files.extend(filenames)
-#     break
 files.reverse()
 print(files)
 for file in files:
